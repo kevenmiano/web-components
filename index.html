@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+</head>
+
+<body>
+  <app-button label="Click me" id="button"></app-button>
+  <app-table id="my-table"></app-table>
+  <script type="module" src="./components/app-button.js"></script>
+  <script type="module">
+    import './components/app-table.js';
+    const table = document.getElementById('my-table');
+    table.columns = [
+      { key: 'name', label: 'Nome' },
+      { key: 'email', label: 'E-mail' },
+      { key: 'role', label: 'Função' }
+    ];
+    table.data = [
+      { name: 'Ana', email: 'ana@example.com', role: 'Admin' },
+      { name: 'Bruno', email: 'bruno@example.com', role: 'User' }
+    ];
+  </script>
+  <script>
+    const button = document.getElementById('button');
+    button.addEventListener('button-click', (event) => {
+      console.log("OUTSIDE shadow DOM", event.detail.label);
+    });
+  </script>
+</body>
+
+</html>
